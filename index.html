@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Beast Fan Page</title>
+    <meta name="description"
+        content="The ultimate fan page for MrBeast (Jimmy Donaldson). Learn about his life, YouTube career, philanthropy, and business ventures like Feastables.">
+    <meta name="keywords"
+        content="MrBeast, Jimmy Donaldson, YouTube, Feastables, Team Trees, Beast Philanthropy, Fan Page">
+    <meta name="author" content="Xvelocity">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231f2933%22/><text x=%2250%22 y=%2275%22 font-size=%2270%22 text-anchor=%22middle%22 fill=%22%232563eb%22 font-family=%22sans-serif%22 font-weight=%22bold%22>X</text></svg>"
+        type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @keyframes pulse-red {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .subscribe-btn {
+            animation: pulse-red 2s infinite;
+        }
+
+        .join-btn {
+            background-color: #2563eb;
+            margin-left: 10px;
+            animation: none;
+        }
+
+        .join-btn:hover {
+            background-color: #1d4ed8;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        #shop-floating-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 98;
+            background-color: #cc0000;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
+            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #shop-floating-btn:hover {
+            transform: scale(1.1);
+            background-color: #ff0000;
+        }
+
+        #share-video-btn {
+            position: relative;
+        }
+
+        #share-video-btn::after {
+            content: attr(data-url);
+            position: absolute;
+            bottom: 115%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2933;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid #374151;
+            z-index: 10;
+        }
+
+        #share-video-btn:hover::after {
+            opacity: 1;
+            visibility: visible;
+            bottom: 125%;
+        }
+
+        .comment-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #374151;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .comment-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #2563eb;
+            position: relative;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .comment-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .comment-actions button {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 4px;
+            transition: color 0.2s ease, background-color 0.2s ease;
+            border-radius: 4px;
+        }
+
+        .comment-actions button:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .like-comment-btn.liked {
+            color: #ef4444;
+        }
+
+        .like-comment-btn.liked:hover {
+            color: #f87171;
+        }
+
+        .comment-actions .delete-comment-btn:hover {
+            color: #ef4444;
+        }
+
+        .comment-user {
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .comment-text {
+            color: #e5e7eb;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+            padding-left: 2px;
+        }
+
+        .comment-date {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .show-more-comments-btn {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #374151;
+            color: #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .show-more-comments-btn:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .feastables-section {
+            background: rgba(31, 41, 51, 0.8);
+            padding: 25px;
+            border-radius: 16px;
+            border: 2px solid #e11d48;
+            margin-top: 30px;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.2);
+        }
+
+        .feastables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .feastable-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            border: 2px solid transparent;
+        }
+
+        .feastable-item.collected {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #e11d48;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+        }
+
+        .feastable-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .feastable-name {
+            font-size: 0.8rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            box-sizing: border-box;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover span {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <nav id="side-nav">
+        <a href="#home" class="nav-link" data-title="Home" aria-label="Home">🏠</a>
+        <a href="#bio" class="nav-link" data-title="Biography" aria-label="Biography">📖</a>
+        <a href="#philanthropy" class="nav-link" data-title="Philanthropy" aria-label="Philanthropy">❤️</a>
+        <a href="#business" class="nav-link" data-title="Business" aria-label="Business">💼</a>
+        <a href="#milestones" class="nav-link" data-title="Milestones" aria-label="Milestones">🏆</a>
+        <a href="#stats" class="nav-link" data-title="Stats" aria-label="Stats">📊</a>
+        <a href="#latest" class="nav-link" data-title="Latest Video" aria-label="Latest Video">🎬</a>
+        <a href="#art" class="nav-link" data-title="Fan Art" aria-label="Fan Art">🎨</a>
+        <a href="#clicker" class="nav-link" data-title="Clicker" aria-label="Clicker">💸</a>
+        <a href="#faq" class="nav-link" data-title="FAQ" aria-label="FAQ">❓</a>
+        <a href="#feastables" class="nav-link" data-title="Feastables" aria-label="Feastables">🍫</a>
+    </nav>
+
+    <header id="home">
+        <h1>Mr. Beast</h1>
+        <div class="social-icons">
+            <a href="https://linktr.ee/beastgames" target="_blank" rel="noopener noreferrer" class="social-icon"
+                title="Beast Games">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M21,6H3A2,2 0 0,0 1,8V16A2,2 0 0,0 3,18H21A2,2 0 0,0 23,16V8A2,2 0 0,0 21,6M6,13A1,1 0 0,1 5,12A1,1 0 0,1 6,11A1,1 0 0,1 7,12A1,1 0 0,1 6,13M9,10A1,1 0 0,1 8,9A1,1 0 0,1 9,8A1,1 0 0,1 10,9A1,1 0 0,1 9,10M15,13H13V11H15V13M18,10H16V8H18V10Z" />
+                </svg>
+            </a>
+            <a href="https://instagram.com/mrbeast" target="_blank" rel="noopener noreferrer" class="social-icon"
+                title="Instagram">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                </svg>
+            </a>
+            <a href="https://twitter.com/MrBeast" target="_blank" rel="noopener noreferrer" class="social-icon"
+                title="Twitter">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" />
+                </svg>
+            </a>
+            <a href="https://facebook.com/mrbeast" target="_blank" rel="noopener noreferrer" class="social-icon"
+                title="Facebook">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.15 5.96C15.21 5.96 16.12 6.04 16.12 6.04V8.51H15.01C13.77 8.51 13.38 9.28 13.38 10.07V12.06H16.15L15.71 14.96H13.38V21.96C18.16 21.21 21.82 17.06 21.82 12.06C21.82 6.53 17.32 2.04 12 2.04Z" />
+                </svg>
+            </a>
+            <button id="theme-toggle" class="theme-toggle" title="Toggle Dark Mode">🌙</button>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <div class="side-column">
+            <div class="sidebar-section">
+                <h2 class="section-title" style="font-size: 1.5rem;">Did You Know?</h2>
+                <div class="fact-item active">Jimmy was diagnosed with Crohn's disease as a teenager.</div>
+                <div class="fact-item">He once read the entire dictionary in one sitting.</div>
+                <div class="fact-item">His first viral video was counting to 100,000 (it took 40 hours).</div>
+                <div class="fact-item">He bought a private island just to give it away.</div>
+                <button id="next-fact-btn" class="btn"
+                    style="width: 100%; margin-top: 10px; padding: 8px; font-size: 0.9rem;">Next Fact</button>
+            </div>
+
+            <section class="legend-section">
+                <h2 class="section-title" style="font-size: 1.5rem;">The Legend</h2>
+                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2025/02/the-ending-was-insane_-mrbeast-gives-exclusive-comments-on-beast-games-season-2-renewal-after-hugely-successful-debut-1.jpg"
+                    alt="MrBeast (Jimmy Donaldson) looking at the camera" loading="lazy">
+
+                <div class="subscribe-container">
+                    <a href="https://www.youtube.com/user/MrBeast6000?sub_confirmation=1" target="_blank"
+                        class="subscribe-btn">SUBSCRIBE</a>
+                    <a href="https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA/join" target="_blank"
+                        class="subscribe-btn join-btn"
+                        onclick="return confirm('Are you Sure? This will take you to the Join and pay CA$4.99/month Page.')">JOIN</a>
+                </div>
+            </section>
+
+            <div class="supporter-list">
+                <h3
+                    style="color: white; margin: 0 0 15px 0; font-size: 1.2rem; border-bottom: 1px solid #2563eb; padding-bottom: 5px;">
+                    Top Supporters</h3>
+                <div class="supporter-item"><span>GiantAsianSticker</span> <span>$10,000</span></div>
+                <div class="supporter-item"><span>Ludwig</span> <span>$5,000</span></div>
+                <div class="supporter-item"><span>PewDiePie</span> <span>$1</span></div>
+                <div class="supporter-item"><span>Anonymous</span> <span>$50,000</span></div>
+            </div>
+        </div>
+
+        <div class="center-column">
+            <div class="cards">
+                <section class="Article" id="bio">
+                    <div>
+                        <h3>Mr. Beast's Life</h3>
+                        <p>MrBeast, whose real name is Jimmy Donaldson, is one of the most famous YouTubers in the
+                            world,
+                            known
+                            for turning wild ideas into massive, feel-good entertainment. He started making videos as a
+                            young
+                            teenager in North Carolina, experimenting with gaming and challenge content before blowing
+                            up
+                            with
+                            over-the-top stunts like counting to 100,000. What really sets MrBeast apart is how he mixes
+                            creativity,
+                            persistence, and kindness, building an empire around making people smile.</p>
+                    </div>
+                    <div class="card-footer">
+                        <h5>Learn more about his biography</h5>
+                        <a class="btn" href="https://en.wikipedia.org/wiki/MrBeast" target="_blank">Read Wiki</a>
+                    </div>
+                </section>
+
+                <section class="Article">
+                    <div>
+                        <h3>YouTube Career</h3>
+                        <p>Jimmy didn’t start as a huge entertainer right away. His YouTube journey began as a teen
+                            making
+                            gaming videos
+                            playing titles like Minecraft and Call of Duty. Over time, his content evolved into insane
+                            challenge
+                            and stunt
+                            videos that often featured enormous cash giveaways. He expanded into long-form production
+                            with
+                            shows
+                            like Beast Games,
+                            proving his YouTube-style entertainment could succeed on TV too.</p>
+                    </div>
+                    <div class="card-footer">
+                        <h5>Learn more about his channel</h5>
+                        <a class="btn" href="https://en.wikipedia.org/wiki/MrBeast" target="_blank">Read Wiki</a>
+                    </div>
+                </section>
+
+                <section class="Article" id="philanthropy">
+                    <div>
+                        <h3>Philanthropy</h3>
+                        <p>Beyond entertainment, Jimmy is known for massive charitable initiatives. He co-founded Team
+                            Trees,
+                            raising over $20 million to plant 20 million trees, and Team Seas, aiming to remove 30
+                            million
+                            pounds of trash from the ocean. His channel "Beast Philanthropy" dedicates 100% of its
+                            revenue
+                            to
+                            feeding the hungry and helping those in need.</p>
+                    </div>
+                    <div class="card-footer">
+                        <h5>Support the cause</h5>
+                        <a class="btn" href="https://www.teamtrees.org/" target="_blank">Team Trees</a>
+                    </div>
+                </section>
+
+                <section class="Article" id="business">
+                    <div>
+                        <h3>Business Ventures</h3>
+                        <p>MrBeast has expanded his brand into the physical world with huge success. He launched MrBeast
+                            Burger,
+                            a virtual restaurant chain, and Feastables, a chocolate and snack brand focused on better
+                            ingredients. These ventures prove that creator-led businesses can compete with major
+                            established
+                            corporations.</p>
+                    </div>
+                    <div class="card-footer">
+                        <h5>Check out the snacks</h5>
+                        <a class="btn" href="https://feastables.com/" target="_blank">Feastables</a>
+                    </div>
+                </section>
+            </div>
+
+            <hr>
+
+            <div class="milestones-container" id="milestones">
+                <h3
+                    style="margin-top: 0; color: #111827; font-size: 1.8rem; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+                    Historic Milestones</h3>
+                <div class="milestone-item">
+                    <div class="milestone-year">2012</div>
+                    <div class="milestone-text">Jimmy creates his YouTube channel "MrBeast6000" at age 13.</div>
+                </div>
+                <div class="milestone-item">
+                    <div class="milestone-year">2017</div>
+                    <div class="milestone-text">Goes viral after uploading a video counting to 100,000.</div>
+                </div>
+                <div class="milestone-item">
+                    <div class="milestone-year">2019</div>
+                    <div class="milestone-text">Launches Team Trees with Mark Rober, raising $20M.</div>
+                </div>
+                <div class="milestone-item">
+                    <div class="milestone-year">2021</div>
+                    <div class="milestone-text">Recreates Squid Game in real life, breaking viewership records.</div>
+                </div>
+            </div>
+
+            <div id="stats" style="width: 100%; margin-top: 40px; margin-bottom: 20px;">
+                <h2 class="section-title" style="text-align: center; font-size: 2rem; margin-bottom: 25px;">Channel
+                    Statistics</h2>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <p class="stat-number-live" id="live-sub-count">Loading...</p>
+                        <p class="stat-label">Subscribers (Live)</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-number" data-target="63" data-suffix="B+">0</p>
+                        <p class="stat-label">Total Views</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-number" data-target="800" data-suffix="+">0</p>
+                        <p class="stat-label">Videos</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-container">
+                <h3 style="margin: 0 0 10px 0; font-size: 1.5rem;">New Merch Drop!</h3>
+                <p>Check out the latest limited edition hoodies.</p>
+                <a href="https://shopmrbeast.com" target="_blank" class="btn"
+                    style="background: white; color: #2563eb; margin-top: 10px;">Shop Now</a>
+            </div>
+
+            <div class="faq-container" id="faq">
+                <h2 class="section-title" style="font-size: 1.8rem; text-align: center;">Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question">How do I join a challenge?</div>
+                    <div class="faq-answer">Keep an eye on MrBeast's social media (Twitter/Instagram) for casting calls
+                        and application forms!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Where does the money come from?</div>
+                    <div class="faq-answer">Brand deals, merchandise sales, and ad revenue are reinvested back into the
+                        videos.</div>
+                </div>
+            </div>
+
+            <div style="width: 100%; margin-top: 30px;" id="art">
+                <h2 class="section-title" style="font-size: 1.8rem; text-align: center;">Fan Art Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtT5GCVUT75JVTa1dRNvzh0YY1QKVNpjfI7Q&s"
+                            alt="Digital painting of MrBeast" loading="lazy">
+                        <span>Digital Portrait</span>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOTHBtzxAQ4n2tN83TqeQBeK1E5SiYsQaZKA&s"
+                            alt="Stylized MrBeast logo fan art" loading="lazy">
+                        <span>Beast Logo Art</span>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="data:image/jpeg;base64,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"
+                            alt="Anime style drawing of MrBeast" loading="lazy">
+                        <span>Anime Style</span>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.ytimg.com/vi/02JoreSaCQ0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAPEYMfHRmziRclTwEqlCsecYNnhg"
+                            alt="Cartoon of MrBeast with money" loading="lazy">
+                        <span>Money Cartoon</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="video-section" id="latest" style="margin-top: 0;">
+                <h2 class="section-title" id="latest-video-title">Loading Latest Video...</h2>
+                <a id="latest-video-link" href="https://www.youtube.com/user/MrBeast6000" target="_blank"
+                    style="display: block; position: relative; transition: transform 0.3s;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                    <img id="latest-video-thumb" src="https://i.ytimg.com/vi/pAnGwRiQ4-4/maxresdefault.jpg"
+                        alt="Latest Video"
+                        style="width: 100%; max-width: 100%; border-radius: 16px; border: 4px solid #2563eb; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin: 0;">
+                    <div
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 5rem; color: rgba(255,255,255,0.9); text-shadow: 0 4px 15px rgba(0,0,0,0.8); pointer-events: none;">
+                        ▶</div>
+                </a>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button id="like-video-btn" class="btn" style="background: #cc0000; flex: 1;">❤️ <span
+                            id="like-count">0</span></button>
+                    <button id="share-video-btn" class="btn" style="background: #374151; flex: 1;">🔗 Share</button>
+                    <a id="share-twitter-btn" href="#" target="_blank" class="btn"
+                        style="background: #000; padding: 12px 20px; display: flex; align-items: center; justify-content: center;"
+                        title="Share on X">𝕏</a>
+                </div>
+                <div id="countdown-container"
+                    style="margin-top: 20px; text-align: center; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px;">
+                    <h3 style="color: white; margin: 0 0 10px 0;">Next Video Estimate:</h3>
+                    <div id="countdown"
+                        style="font-size: 1.5rem; font-weight: bold; color: #2563eb; font-family: monospace;">Loading...
+                    </div>
+                </div>
+
+                <div class="comment-section">
+                    <h3 style="color: white; margin-top: 0;">Fan Comments</h3>
+                    <input type="text" id="comment-name" class="comment-input" placeholder="Your Name (Optional)">
+                    <textarea id="comment-body" class="comment-input" rows="3"
+                        placeholder="Leave a comment..."></textarea>
+                    <div style="display: flex; gap: 10px;">
+                        <button id="post-comment-btn" class="btn" style="flex: 1;">Post Comment</button>
+                        <button id="post-yt-comment-btn" class="btn" style="flex: 1; background: #ff0000;">Post on
+                            YouTube</button>
+                    </div>
+                    <div id="comments-list" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+
+            <div class="clicker-section" id="clicker">
+                <h2 class="section-title" style="font-size: 1.8rem; text-align: center; margin-top: 0;">Beast Clicker
+                </h2>
+                <p style="color: #ccc; text-align: center;">Click to generate money for giveaways! (A Fun little
+                    Game!)
+                </p>
+                <div class="clicker-display">$<span id="clicker-count">0</span></div>
+                <button id="clicker-btn" class="btn"
+                    style="background: linear-gradient(90deg, #10b981, #059669); font-size: 1.2rem;">GIVE AWAY!</button>
+            </div>
+
+            <div class="feastables-section" id="feastables">
+                <h2 class="section-title" style="font-size: 1.8rem; text-align: center; margin-top: 0;">Collect the
+                    FeastAbles (A Fun little Game!)</h2>
+                <p style="color: #ccc; text-align: center;">Collect all the flavors!</p>
+                <div class="feastables-grid">
+                </div>
+            </div>
+
+            <div class="newsletter-section">
+                <h3 style="margin-top: 0;">Join the Beast Club</h3>
+                <p>Get notified about new videos and giveaways!</p>
+                <input type="email" id="newsletter-email" placeholder="Enter your email..." class="newsletter-input">
+                <button id="newsletter-btn" class="btn">Sign Up</button>
+            </div>
+        </div>
+
+        <div class="side-column">
+            <div class="crew-wrapper" id="crew">
+                <h2 class="section-title" style="margin-top: 0; font-size: 1.5rem;">The Crew</h2>
+                <div class="crew-container">
+                    <div class="crew-member">
+                        <div class="crew-avatar">K</div>
+                        <p class="crew-name">Karl</p>
+                    </div>
+                    <div class="crew-member">
+                        <div class="crew-avatar">C</div>
+                        <p class="crew-name">Chandler</p>
+                    </div>
+                    <div class="crew-member">
+                        <div class="crew-avatar">N</div>
+                        <p class="crew-name">Nolan</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quotes-section" id="quotes">
+                <h2 class="section-title" style="font-size: 1.5rem;">Jimmy's Mindset</h2>
+                <div class="quote-grid">
+                    <div class="quote-card">"I want to make the world a better place before I die."</div>
+                    <div class="quote-card">"You just gotta keep going and going and going."</div>
+                    <div class="quote-card">"I'm numb to money."</div>
+                    <div class="quote-card">"If you want to be a YouTuber, just upload videos."</div>
+                </div>
+            </div>
+
+            <div class="poll-container">
+                <h3 style="color: white; margin: 0 0 15px 0; font-size: 1.2rem; text-align: center;">Next Video Idea?
+                </h3>
+                <div class="poll-option">Hide & Seek in a City</div>
+                <div class="poll-option">$1 vs $1,000,000 Hotel</div>
+                <div class="poll-option">Train vs Tank</div>
+            </div>
+
+            <div class="sidebar-section" style="margin-top: 30px;">
+                <h2 class="section-title" style="font-size: 1.5rem;">Other Channels</h2>
+                <a href="https://www.youtube.com/@BeastReacts" target="_blank"
+                    style="display:block; color:white; padding:10px; background:rgba(255,255,255,0.1); margin-bottom:10px; border-radius:8px; text-decoration:none; text-align:center;">Beast
+                    Reacts</a>
+                <a href="https://www.youtube.com/@MrBeastGaming" target="_blank"
+                    style="display:block; color:white; padding:10px; background:rgba(255,255,255,0.1); margin-bottom:10px; border-radius:8px; text-decoration:none; text-align:center;">MrBeast
+                    Gaming</a>
+            </div>
+
+            <div class="sidebar-section" style="margin-top: 30px;">
+                <h2 class="section-title" style="font-size: 1.5rem;">Random Video</h2>
+                <button id="random-video-btn" class="btn"
+                    style="width: 100%; background: linear-gradient(90deg, #f59e0b, #d97706);">📺 Watch Random
+                    Video</button>
+            </div>
+
+            <div class="sidebar-section" style="margin-top: 30px;">
+                <h2 class="section-title" style="font-size: 1.5rem;">Challenge Generator</h2>
+                <div id="challenge-display"
+                    style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; min-height: 80px; display: flex; align-items: center; justify-content: center; text-align: center; color: #e5e7eb; margin-bottom: 10px; border: 2px dashed #2563eb; font-weight: bold;">
+                    Click below for an idea!
+                </div>
+                <button id="generate-challenge-btn" class="btn" style="width: 100%;">Generate Idea 🎲</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h4>&copy; Copyright Mr. Beast Fan Page. Made By Xvelocity</h4>
+    </footer>
+
+    <button id="scrollTopBtn" title="Go to top">↑</button>
+
+    <a href="https://shopmrbeast.com" target="_blank" id="shop-floating-btn">
+        🛍️ Shop Merch
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader-wrapper');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            }
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.onscroll = function () {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const pollOptions = document.querySelectorAll('.poll-option');
+        pollOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                pollOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { y: 0.7 }
+                });
+            });
+        });
+
+        let money = parseInt(localStorage.getItem('beastMoney')) || 0;
+        const clickerBtn = document.getElementById('clicker-btn');
+        const clickerDisplay = document.getElementById('clicker-count');
+
+        clickerDisplay.textContent = money.toLocaleString();
+
+        clickerBtn.addEventListener('click', (e) => {
+            const amount = Math.floor(Math.random() * 100) + 10;
+            money += amount;
+            localStorage.setItem('beastMoney', money);
+            clickerDisplay.textContent = money.toLocaleString();
+
+            const floatEl = document.createElement('div');
+            floatEl.textContent = `+$${amount}`;
+            floatEl.style.position = 'absolute';
+            floatEl.style.left = `${e.pageX}px`;
+            floatEl.style.top = `${e.pageY}px`;
+            floatEl.style.color = '#10b981';
+            floatEl.style.fontWeight = 'bold';
+            floatEl.style.pointerEvents = 'none';
+            floatEl.style.transition = 'all 1s ease-out';
+            floatEl.style.zIndex = '1000';
+            document.body.appendChild(floatEl);
+
+            requestAnimationFrame(() => {
+                floatEl.style.transform = 'translateY(-50px)';
+                floatEl.style.opacity = '0';
+            });
+
+            setTimeout(() => floatEl.remove(), 1000);
+
+            confetti({
+                particleCount: 15,
+                spread: 30,
+                origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
+            });
+        });
+
+        document.getElementById('newsletter-btn').addEventListener('click', () => {
+            const email = document.getElementById('newsletter-email').value;
+            if (email) {
+                alert('Thanks for subscribing! You are now part of the Beast Club.');
+                document.getElementById('newsletter-email').value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+
+        const statsSection = document.querySelector('.stats-container');
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let started = false;
+
+        const startCount = (el) => {
+            const target = parseInt(el.getAttribute('data-target'));
+            const suffix = el.getAttribute('data-suffix');
+            const duration = 2000;
+            const frameDuration = 1000 / 60;
+            const totalFrames = Math.round(duration / frameDuration);
+            const easeOutQuad = t => t * (2 - t);
+
+            let frame = 0;
+            const counter = setInterval(() => {
+                frame++;
+                const progress = easeOutQuad(frame / totalFrames);
+                const currentCount = Math.round(target * progress);
+
+                if (frame === totalFrames) {
+                    clearInterval(counter);
+                    el.innerText = target + suffix;
+                } else {
+                    el.innerText = currentCount + suffix;
+                }
+            }, frameDuration);
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !started) {
+                    statNumbers.forEach(num => startCount(num));
+                    started = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        const liveSubDisplay = document.getElementById('live-sub-count');
+        let currentSubCount = 330000000; // Fallback base
+
+        const updateSubDisplay = () => {
+            if (liveSubDisplay) {
+                liveSubDisplay.innerText = Math.floor(currentSubCount).toLocaleString();
+            }
+        };
+
+        // Simulate live growth
+        setInterval(() => {
+            currentSubCount += Math.random() * 2; 
+            updateSubDisplay();
+        }, 500);
+
+        const fetchLiveSubs = async () => {
+            if (!liveSubDisplay) return;
+            try {
+                const response = await fetch('https://decapi.me/youtube/subscriber_count?id=UCX6OQ3DkcsbYNE6H8uQQuVA');
+                let data = await response.text();
+                data = data.trim();
+
+                // Remove commas and non-numeric chars, keep decimals if any
+                let val = parseFloat(data.replace(/[^0-9.]/g, ''));
+
+                if (!isNaN(val)) {
+                    // If API returns abbreviated (e.g. 330), convert to millions
+                    if (val < 10000) {
+                        val = val * 1000000;
+                    }
+                    // Sync if API value is significantly different
+                    if (Math.abs(val - currentSubCount) > 100000) {
+                        currentSubCount = val;
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching live stats:', error);
+            }
+        };
+
+        fetchLiveSubs();
+        setInterval(fetchLiveSubs, 60000);
+
+        const facts = document.querySelectorAll('.fact-item');
+        let currentFact = 0;
+        let factInterval;
+
+        const showNextFact = () => {
+            facts[currentFact].classList.remove('active');
+            currentFact = (currentFact + 1) % facts.length;
+            facts[currentFact].classList.add('active');
+        };
+
+        const startFactRotation = () => {
+            factInterval = setInterval(showNextFact, 5000);
+        };
+
+        startFactRotation();
+
+        if (facts.length > 0) {
+            const factsContainer = facts[0].parentElement;
+            factsContainer.addEventListener('mouseenter', () => clearInterval(factInterval));
+            factsContainer.addEventListener('mouseleave', startFactRotation);
+        }
+
+        const nextFactBtn = document.getElementById('next-fact-btn');
+        if (nextFactBtn) {
+            nextFactBtn.addEventListener('click', () => {
+                showNextFact();
+            });
+        }
+
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    alert('SECRET UNLOCKED: UNLIMITED COOKIES! 🍪');
+                    confetti({
+                        particleCount: 500,
+                        spread: 100,
+                        origin: { y: 0.6 }
+                    });
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        let currentVideoId = '';
+
+        const fetchLatestVideo = async () => {
+            const channelId = 'UCX6OQ3DkcsbYNE6H8uQQuVA';
+            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.status === 'ok' && data.items.length > 0) {
+                    const latestVideo = data.items[0];
+                    const videoId = latestVideo.guid.split(':')[2];
+                    currentVideoId = videoId;
+
+                    document.getElementById('latest-video-title').textContent = latestVideo.title;
+                    document.getElementById('latest-video-link').href = latestVideo.link;
+                    document.getElementById('latest-video-thumb').src = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+                    document.getElementById('latest-video-thumb').alt = latestVideo.title;
+
+                    const shareBtn = document.getElementById('share-video-btn');
+                    if (shareBtn) shareBtn.setAttribute('data-url', latestVideo.link);
+
+                    const twitterBtn = document.getElementById('share-twitter-btn');
+                    if (twitterBtn) twitterBtn.href = `https://twitter.com/intent/tweet?text=Check out the latest MrBeast video!&url=${encodeURIComponent(latestVideo.link)}`;
+                }
+            } catch (error) {
+                console.error('Error fetching latest video:', error);
+            }
+        };
+
+        fetchLatestVideo();
+
+        const videoLinkEl = document.getElementById('latest-video-link');
+
+        videoLinkEl.addEventListener('mouseenter', () => {
+            if (!currentVideoId) return;
+            if (videoLinkEl.querySelector('iframe')) return;
+
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0`;
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.position = 'absolute';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
+            iframe.style.border = 'none';
+            iframe.style.borderRadius = '16px';
+            iframe.style.pointerEvents = 'none';
+
+            videoLinkEl.appendChild(iframe);
+        });
+
+        videoLinkEl.addEventListener('mouseleave', () => {
+            const iframe = videoLinkEl.querySelector('iframe');
+            if (iframe) {
+                iframe.remove();
+            }
+        });
+
+        const shareBtn = document.getElementById('share-video-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => {
+                const videoLink = document.getElementById('latest-video-link').href;
+
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'MrBeast Latest Video',
+                        text: 'Check out this video!',
+                        url: videoLink
+                    }).catch(console.error);
+                } else {
+                    navigator.clipboard.writeText(videoLink).then(() => {
+                        const originalText = shareBtn.innerText;
+                        shareBtn.innerText = 'Copied! ✅';
+                        setTimeout(() => {
+                            shareBtn.innerText = originalText;
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                }
+            });
+        }
+
+        const likeBtn = document.getElementById('like-video-btn');
+        const likeCountSpan = document.getElementById('like-count');
+
+        let storedLikes = parseInt(localStorage.getItem('videoLikes'));
+        let likeCount = (storedLikes && storedLikes > 1000000) ? storedLikes : Math.floor(Math.random() * 2000000) + 3500000;
+
+        let hasLiked = localStorage.getItem('hasLikedVideo') === 'true';
+
+        if (likeBtn && likeCountSpan) {
+            likeCountSpan.innerText = likeCount.toLocaleString();
+
+            if (hasLiked) {
+                likeBtn.style.background = '#ff0000';
+                likeBtn.style.boxShadow = 'inset 0 0 10px rgba(0,0,0,0.5)';
+            }
+
+            likeBtn.addEventListener('click', (e) => {
+                if (hasLiked) {
+                    likeCount--;
+                    hasLiked = false;
+                    likeBtn.style.background = '#cc0000';
+                    likeBtn.style.boxShadow = 'none';
+                } else {
+                    likeCount++;
+                    hasLiked = true;
+                    likeBtn.style.background = '#ff0000';
+                    likeBtn.style.boxShadow = 'inset 0 0 10px rgba(0,0,0,0.5)';
+
+                    confetti({
+                        particleCount: 20,
+                        spread: 40,
+                        origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
+                    });
+                }
+
+                localStorage.setItem('videoLikes', likeCount);
+                localStorage.setItem('hasLikedVideo', hasLiked);
+                likeCountSpan.innerText = likeCount.toLocaleString();
+
+                likeBtn.style.transform = 'scale(1.1)';
+                setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+            });
+        }
+
+        const commentList = document.getElementById('comments-list');
+        const commentName = document.getElementById('comment-name');
+        const commentBody = document.getElementById('comment-body');
+        const postBtn = document.getElementById('post-comment-btn');
+        const postYtBtn = document.getElementById('post-yt-comment-btn');
+
+        let comments = (JSON.parse(localStorage.getItem('beastComments')) || []).map((c, i) => ({
+            ...c,
+            id: c.id || Date.now() + i,
+            likes: c.likes || 0
+        }));
+        let likedComments = JSON.parse(localStorage.getItem('likedBeastComments')) || [];
+        let commentsVisible = 5;
+
+        const renderComments = () => {
+            if (!commentList) return;
+            commentList.innerHTML = '';
+            const commentsToRender = comments.slice().reverse();
+
+            commentsToRender.slice(0, commentsVisible).forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'comment-item';
+                const isLiked = likedComments.includes(c.id);
+                div.innerHTML = `
+                    <div class="comment-header">
+                        <div class="comment-user">${c.name}</div>
+                        <div class="comment-date">${c.date}</div>
+                    </div>
+                    <div class="comment-text">${c.text}</div>
+                    <div class="comment-actions">
+                        <button class="like-comment-btn ${isLiked ? 'liked' : ''}" data-id="${c.id}" title="Like">❤️ <span>${c.likes}</span></button>
+                        <button class="reply-comment-btn" data-id="${c.id}" title="Reply">Reply</button>
+                        <button class="edit-comment-btn" data-id="${c.id}" title="Edit">Edit</button>
+                        <button class="delete-comment-btn" data-id="${c.id}" title="Delete">Delete</button>
+                    </div>
+                `;
+                commentList.appendChild(div);
+            });
+
+            if (comments.length > commentsVisible) {
+                const showMoreBtn = document.createElement('button');
+                showMoreBtn.className = 'show-more-comments-btn';
+                showMoreBtn.textContent = `Show all ${comments.length} comments`;
+                commentList.appendChild(showMoreBtn);
+            }
+        };
+
+        renderComments();
+
+        if (commentList) {
+            commentList.addEventListener('click', e => {
+                const targetButton = e.target.closest('button');
+                if (!targetButton) return;
+
+                const commentId = Number(targetButton.dataset.id);
+
+                if (targetButton.classList.contains('delete-comment-btn')) {
+                    if (confirm('Are you sure you want to delete this comment?')) {
+                        comments = comments.filter(c => c.id !== commentId);
+                        localStorage.setItem('beastComments', JSON.stringify(comments));
+                        renderComments();
+                    }
+                }
+                if (targetButton.classList.contains('edit-comment-btn')) {
+                    const comment = comments.find(c => c.id === commentId);
+                    if (comment) {
+                        const newText = prompt('Edit your comment:', comment.text);
+                        if (newText !== null && newText.trim() !== '') {
+                            comment.text = newText.trim();
+                            localStorage.setItem('beastComments', JSON.stringify(comments));
+                            renderComments();
+                        }
+                    }
+                }
+                if (targetButton.classList.contains('reply-comment-btn')) {
+                    const comment = comments.find(c => c.id === commentId);
+                    if (comment) {
+                        commentBody.value = `@${comment.name} `;
+                        commentBody.focus();
+                        commentBody.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+                if (targetButton.classList.contains('like-comment-btn')) {
+                    const comment = comments.find(c => c.id === commentId);
+                    if (comment) {
+                        if (likedComments.includes(commentId)) {
+                            comment.likes--;
+                            likedComments = likedComments.filter(id => id !== commentId);
+                        } else {
+                            comment.likes++;
+                            likedComments.push(commentId);
+                        }
+                        localStorage.setItem('beastComments', JSON.stringify(comments));
+                        localStorage.setItem('likedBeastComments', JSON.stringify(likedComments));
+                        renderComments();
+                    }
+                }
+                if (targetButton.classList.contains('show-more-comments-btn')) {
+                    commentsVisible = comments.length;
+                    renderComments();
+                }
+            });
+        }
+
+        if (postBtn) {
+            postBtn.addEventListener('click', () => {
+                const name = commentName.value.trim() || 'Anonymous';
+                const text = commentBody.value.trim();
+
+                if (!text) return alert('Please write a comment!');
+
+                const newComment = {
+                    id: Date.now(),
+                    name,
+                    text,
+                    date: new Date().toLocaleDateString(),
+                    likes: 0
+                };
+
+                comments.push(newComment);
+                localStorage.setItem('beastComments', JSON.stringify(comments));
+                renderComments();
+                commentBody.value = '';
+
+                confetti({
+                    particleCount: 30,
+                    spread: 50,
+                    origin: { y: 0.8 }
+                });
+            });
+        }
+
+        if (postYtBtn) {
+            postYtBtn.addEventListener('click', () => {
+                const text = commentBody.value.trim();
+                if (!text) return alert('Write a comment first!');
+
+                navigator.clipboard.writeText(text).then(() => {
+                    const videoLink = document.getElementById('latest-video-link').href;
+                    const confirmGo = confirm("Comment copied to clipboard! 📋\n\nDo you want to go to YouTube to paste it?");
+                    if (confirmGo) {
+                        window.open(videoLink, '_blank');
+                    }
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Failed to copy text. Please copy manually.');
+                });
+            });
+        }
+
+        const updateCountdown = () => {
+            const now = new Date();
+            const nextSaturday = new Date();
+            nextSaturday.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
+            nextSaturday.setHours(12, 0, 0, 0);
+
+            if (now.getDay() === 6 && now > nextSaturday) {
+                nextSaturday.setDate(nextSaturday.getDate() + 7);
+            }
+
+            const diff = nextSaturday - now;
+
+            const countdownEl = document.getElementById('countdown');
+            if (countdownEl) {
+                if (diff < 3600000) {
+                    countdownEl.style.color = '#ff0000';
+                    countdownEl.style.textShadow = '0 0 10px rgba(255, 0, 0, 0.5)';
+                } else {
+                    countdownEl.style.color = '#2563eb';
+                    countdownEl.style.textShadow = 'none';
+                }
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (countdownEl) {
+                countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        };
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        const randomVideoBtn = document.getElementById('random-video-btn');
+        const randomVideos = [
+            '0e3GPea1Tyg', // $456,000 Squid Game In Real Life!
+            'r7zJ8srwwjk', // I Spent 50 Hours In Solitary Confinement
+            '9bqk64bb19w', // I Spent 50 Hours Buried Alive
+            'dBxOYE2j55w', // Make This Video The Most Liked Video On Youtube
+            'QxGVgXf_CNs', // I Built Willy Wonka's Chocolate Factory!
+            'Wdjh81uH6FU', // I Bought The World's Largest Firework ($600,000)
+            'cExLQ1o2pDw', // I Survived 7 Days In A Grocery Store
+            'GLoeAJUcz38', // Press This Button To Win $100,000!
+            'PKtnafFtfEo', // I Built A Private Island
+            'HBMmK1c44sE'  // I Spent 24 Hours In A Doomsday Bunker
+        ];
+
+        if (randomVideoBtn) {
+            randomVideoBtn.addEventListener('click', () => {
+                const randomId = randomVideos[Math.floor(Math.random() * randomVideos.length)];
+                window.open(`https://www.youtube.com/watch?v=${randomId}`, '_blank');
+            });
+        }
+
+        const challenges = [
+            "Last To Leave Circle Wins $10,000",
+            "Hide And Seek For $50,000",
+            "I Bought A Private Island",
+            "Survive 24 Hours In The Bermuda Triangle",
+            "Press This Button To Win $100,000",
+            "Extreme Tag For $1,000,000",
+            "Would You Swim With Sharks For $100k?",
+            "I Gave My Credit Card To Random People",
+            "Last To Take Hand Off Lamborghini Wins It",
+            "Anything You Can Fit In The Circle I'll Pay For"
+        ];
+
+        const challengeBtn = document.getElementById('generate-challenge-btn');
+        const challengeDisplay = document.getElementById('challenge-display');
+
+        if (challengeBtn) {
+            challengeBtn.addEventListener('click', (e) => {
+                challengeDisplay.innerText = "Generating...";
+                challengeDisplay.style.borderColor = '#2563eb';
+
+                setTimeout(() => {
+                    const random = Math.floor(Math.random() * challenges.length);
+                    challengeDisplay.innerText = challenges[random];
+                    challengeDisplay.style.borderColor = '#10b981';
+
+                    confetti({
+                        particleCount: 30,
+                        spread: 50,
+                        origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
+                    });
+                }, 400);
+            });
+        }
+
+        const feastablesData = [
+            { id: 'original', name: 'Original', icon: '🍫' },
+            { id: 'almond', name: 'Almond', icon: '🥜' },
+            { id: 'quinoa', name: 'Quinoa', icon: '🌾' },
+            { id: 'milk', name: 'Milk Choc', icon: '🥛' },
+            { id: 'deez', name: 'Deez Nutz', icon: '🥜' },
+            { id: 'crunch', name: 'Crunch', icon: '💥' }
+        ];
+
+        const feastablesContainer = document.querySelector('.feastables-grid');
+        let collectedFeastables = JSON.parse(localStorage.getItem('collectedFeastables')) || [];
+
+        if (feastablesContainer) {
+            feastablesData.forEach(bar => {
+                const item = document.createElement('div');
+                item.className = `feastable-item ${collectedFeastables.includes(bar.id) ? 'collected' : ''}`;
+                item.innerHTML = `
+                    <span class="feastable-icon">${bar.icon}</span>
+                    <span class="feastable-name">${bar.name}</span>
+                `;
+
+                item.addEventListener('click', () => {
+                    if (collectedFeastables.includes(bar.id)) {
+                        collectedFeastables = collectedFeastables.filter(id => id !== bar.id);
+                        item.classList.remove('collected');
+                    } else {
+                        collectedFeastables.push(bar.id);
+                        item.classList.add('collected');
+                        confetti({
+                            particleCount: 15,
+                            spread: 30,
+                            origin: { x: item.getBoundingClientRect().left / window.innerWidth, y: item.getBoundingClientRect().top / window.innerHeight }
+                        });
+                    }
+                    localStorage.setItem('collectedFeastables', JSON.stringify(collectedFeastables));
+                });
+
+                feastablesContainer.appendChild(item);
+            });
+        }
+    </script>
+</body>
+
+</html>         }
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (countdownEl) {
+                countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        };
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        const randomVideoBtn = document.getElementById('random-video-btn');
+        const randomVideos = [
+            '0e3GPea1Tyg', // $456,000 Squid Game In Real Life!
+            'r7zJ8srwwjk', // I Spent 50 Hours In Solitary Confinement
+            '9bqk64bb19w', // I Spent 50 Hours Buried Alive
+            'dBxOYE2j55w', // Make This Video The Most Liked Video On Youtube
+            'QxGVgXf_CNs', // I Built Willy Wonka's Chocolate Factory!
+            'Wdjh81uH6FU', // I Bought The World's Largest Firework ($600,000)
+            'cExLQ1o2pDw', // I Survived 7 Days In A Grocery Store
+            'GLoeAJUcz38', // Press This Button To Win $100,000!
+            'PKtnafFtfEo', // I Built A Private Island
+            'HBMmK1c44sE'  // I Spent 24 Hours In A Doomsday Bunker
+        ];
+
+        if (randomVideoBtn) {
+            randomVideoBtn.addEventListener('click', () => {
+                const randomId = randomVideos[Math.floor(Math.random() * randomVideos.length)];
+                window.open(`https://www.youtube.com/watch?v=${randomId}`, '_blank');
+            });
+        }
+
+        const challenges = [
+            "Last To Leave Circle Wins $10,000",
+            "Hide And Seek For $50,000",
+            "I Bought A Private Island",
+            "Survive 24 Hours In The Bermuda Triangle",
+            "Press This Button To Win $100,000",
+            "Extreme Tag For $1,000,000",
+            "Would You Swim With Sharks For $100k?",
+            "I Gave My Credit Card To Random People",
+            "Last To Take Hand Off Lamborghini Wins It",
+            "Anything You Can Fit In The Circle I'll Pay For"
+        ];
+
+        const challengeBtn = document.getElementById('generate-challenge-btn');
+        const challengeDisplay = document.getElementById('challenge-display');
+
+        if (challengeBtn) {
+            challengeBtn.addEventListener('click', (e) => {
+                challengeDisplay.innerText = "Generating...";
+                challengeDisplay.style.borderColor = '#2563eb';
+
+                setTimeout(() => {
+                    const random = Math.floor(Math.random() * challenges.length);
+                    challengeDisplay.innerText = challenges[random];
+                    challengeDisplay.style.borderColor = '#10b981';
+
+                    confetti({
+                        particleCount: 30,
+                        spread: 50,
+                        origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
+                    });
+                }, 400);
+            });
+        }
+
+        const feastablesData = [
+            { id: 'original', name: 'Original', icon: '🍫' },
+            { id: 'almond', name: 'Almond', icon: '🥜' },
+            { id: 'quinoa', name: 'Quinoa', icon: '🌾' },
+            { id: 'milk', name: 'Milk Choc', icon: '🥛' },
+            { id: 'deez', name: 'Deez Nutz', icon: '🥜' },
+            { id: 'crunch', name: 'Crunch', icon: '💥' }
+        ];
+
+        const feastablesContainer = document.querySelector('.feastables-grid');
+        let collectedFeastables = JSON.parse(localStorage.getItem('collectedFeastables')) || [];
+
+        if (feastablesContainer) {
+            feastablesData.forEach(bar => {
+                const item = document.createElement('div');
+                item.className = `feastable-item ${collectedFeastables.includes(bar.id) ? 'collected' : ''}`;
+                item.innerHTML = `
+                    <span class="feastable-icon">${bar.icon}</span>
+                    <span class="feastable-name">${bar.name}</span>
+                `;
+
+                item.addEventListener('click', () => {
+                    if (collectedFeastables.includes(bar.id)) {
+                        collectedFeastables = collectedFeastables.filter(id => id !== bar.id);
+                        item.classList.remove('collected');
+                    } else {
+                        collectedFeastables.push(bar.id);
+                        item.classList.add('collected');
+                        confetti({
+                            particleCount: 15,
+                            spread: 30,
+                            origin: { x: item.getBoundingClientRect().left / window.innerWidth, y: item.getBoundingClientRect().top / window.innerHeight }
+                        });
+                    }
+                    localStorage.setItem('collectedFeastables', JSON.stringify(collectedFeastables));
+                });
+
+                feastablesContainer.appendChild(item);
+            });
+        }
+    </script>
+</body>
+
+</html>
