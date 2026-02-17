@@ -305,6 +305,32 @@
         .gallery-item:hover span {
             transform: translateY(0);
         }
+
+        /* Custom Modal for Join Button */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 10001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-modal-content {
+            background-color: #1f2933;
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            color: white;
+        }
     </style>
 </head>
 
@@ -384,8 +410,7 @@
                     <a href="https://www.youtube.com/user/MrBeast6000?sub_confirmation=1" target="_blank"
                         class="subscribe-btn">SUBSCRIBE</a>
                     <a href="https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA/join" target="_blank"
-                        class="subscribe-btn join-btn"
-                        onclick="return confirm('Are you Sure? This will take you to the Join and pay CA$4.99/month Page.')">JOIN</a>
+                        class="subscribe-btn join-btn" id="join-btn-link">JOIN</a>
                 </div>
             </section>
 
@@ -706,7 +731,7 @@
     </div>
 
     <footer>
-        <h4>&copy; Copyright Mr. Beast Fan Page. Made By Xvelocity</h4>
+        <h4>&copy; Copyright Mr. Beast Fan Page. Made by Xvelo AI</h4>
     </footer>
 
     <button id="scrollTopBtn" title="Go to top">↑</button>
@@ -714,6 +739,18 @@
     <a href="https://shopmrbeast.com" target="_blank" id="shop-floating-btn">
         🛍️ Shop Merch
     </a>
+
+    <!-- Custom Modal HTML -->
+    <div id="join-modal" class="custom-modal">
+        <div class="custom-modal-content">
+            <h3 style="color: #2563eb; margin-top: 0;">Xvelo AI says</h3>
+            <p>Are you Sure? This will take you to the Join and pay CA$4.99/month Page.</p>
+            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+                <button id="join-confirm-yes" class="btn" style="background: #10b981; min-width: 80px;">Yes</button>
+                <button id="join-confirm-no" class="btn" style="background: #ef4444; min-width: 80px;">No</button>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -861,7 +898,7 @@
         }
 
         const liveSubDisplay = document.getElementById('live-sub-count');
-        let currentSubCount = 330000000; // Fallback base
+        let currentSubCount = parseFloat(localStorage.getItem('beastSubCount_v2')) || 467000000; // Fallback base
 
         const updateSubDisplay = () => {
             if (liveSubDisplay) {
@@ -872,6 +909,7 @@
         // Simulate live growth
         setInterval(() => {
             currentSubCount += Math.random() * 2; 
+            localStorage.setItem('beastSubCount_v2', currentSubCount);
             updateSubDisplay();
         }, 500);
 
@@ -900,8 +938,8 @@
             }
         };
 
-        fetchLiveSubs();
-        setInterval(fetchLiveSubs, 60000);
+        // fetchLiveSubs();
+        // setInterval(fetchLiveSubs, 60000);
 
         const facts = document.querySelectorAll('.fact-item');
         let currentFact = 0;
@@ -1364,119 +1402,32 @@
                 feastablesContainer.appendChild(item);
             });
         }
-    </script>
-</body>
 
-</html>         }
-            }
+        // Join Button Modal Logic
+        const joinBtn = document.getElementById('join-btn-link');
+        const joinModal = document.getElementById('join-modal');
+        const joinYes = document.getElementById('join-confirm-yes');
+        const joinNo = document.getElementById('join-confirm-no');
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            if (countdownEl) {
-                countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }
-        };
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        const randomVideoBtn = document.getElementById('random-video-btn');
-        const randomVideos = [
-            '0e3GPea1Tyg', // $456,000 Squid Game In Real Life!
-            'r7zJ8srwwjk', // I Spent 50 Hours In Solitary Confinement
-            '9bqk64bb19w', // I Spent 50 Hours Buried Alive
-            'dBxOYE2j55w', // Make This Video The Most Liked Video On Youtube
-            'QxGVgXf_CNs', // I Built Willy Wonka's Chocolate Factory!
-            'Wdjh81uH6FU', // I Bought The World's Largest Firework ($600,000)
-            'cExLQ1o2pDw', // I Survived 7 Days In A Grocery Store
-            'GLoeAJUcz38', // Press This Button To Win $100,000!
-            'PKtnafFtfEo', // I Built A Private Island
-            'HBMmK1c44sE'  // I Spent 24 Hours In A Doomsday Bunker
-        ];
-
-        if (randomVideoBtn) {
-            randomVideoBtn.addEventListener('click', () => {
-                const randomId = randomVideos[Math.floor(Math.random() * randomVideos.length)];
-                window.open(`https://www.youtube.com/watch?v=${randomId}`, '_blank');
+        if (joinBtn && joinModal) {
+            joinBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                joinModal.style.display = 'flex';
             });
-        }
 
-        const challenges = [
-            "Last To Leave Circle Wins $10,000",
-            "Hide And Seek For $50,000",
-            "I Bought A Private Island",
-            "Survive 24 Hours In The Bermuda Triangle",
-            "Press This Button To Win $100,000",
-            "Extreme Tag For $1,000,000",
-            "Would You Swim With Sharks For $100k?",
-            "I Gave My Credit Card To Random People",
-            "Last To Take Hand Off Lamborghini Wins It",
-            "Anything You Can Fit In The Circle I'll Pay For"
-        ];
-
-        const challengeBtn = document.getElementById('generate-challenge-btn');
-        const challengeDisplay = document.getElementById('challenge-display');
-
-        if (challengeBtn) {
-            challengeBtn.addEventListener('click', (e) => {
-                challengeDisplay.innerText = "Generating...";
-                challengeDisplay.style.borderColor = '#2563eb';
-
-                setTimeout(() => {
-                    const random = Math.floor(Math.random() * challenges.length);
-                    challengeDisplay.innerText = challenges[random];
-                    challengeDisplay.style.borderColor = '#10b981';
-
-                    confetti({
-                        particleCount: 30,
-                        spread: 50,
-                        origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
-                    });
-                }, 400);
+            joinYes.addEventListener('click', () => {
+                window.open(joinBtn.href, '_blank');
+                joinModal.style.display = 'none';
             });
-        }
 
-        const feastablesData = [
-            { id: 'original', name: 'Original', icon: '🍫' },
-            { id: 'almond', name: 'Almond', icon: '🥜' },
-            { id: 'quinoa', name: 'Quinoa', icon: '🌾' },
-            { id: 'milk', name: 'Milk Choc', icon: '🥛' },
-            { id: 'deez', name: 'Deez Nutz', icon: '🥜' },
-            { id: 'crunch', name: 'Crunch', icon: '💥' }
-        ];
+            joinNo.addEventListener('click', () => {
+                joinModal.style.display = 'none';
+            });
 
-        const feastablesContainer = document.querySelector('.feastables-grid');
-        let collectedFeastables = JSON.parse(localStorage.getItem('collectedFeastables')) || [];
-
-        if (feastablesContainer) {
-            feastablesData.forEach(bar => {
-                const item = document.createElement('div');
-                item.className = `feastable-item ${collectedFeastables.includes(bar.id) ? 'collected' : ''}`;
-                item.innerHTML = `
-                    <span class="feastable-icon">${bar.icon}</span>
-                    <span class="feastable-name">${bar.name}</span>
-                `;
-
-                item.addEventListener('click', () => {
-                    if (collectedFeastables.includes(bar.id)) {
-                        collectedFeastables = collectedFeastables.filter(id => id !== bar.id);
-                        item.classList.remove('collected');
-                    } else {
-                        collectedFeastables.push(bar.id);
-                        item.classList.add('collected');
-                        confetti({
-                            particleCount: 15,
-                            spread: 30,
-                            origin: { x: item.getBoundingClientRect().left / window.innerWidth, y: item.getBoundingClientRect().top / window.innerHeight }
-                        });
-                    }
-                    localStorage.setItem('collectedFeastables', JSON.stringify(collectedFeastables));
-                });
-
-                feastablesContainer.appendChild(item);
+            joinModal.addEventListener('click', (e) => {
+                if (e.target === joinModal) {
+                    joinModal.style.display = 'none';
+                }
             });
         }
     </script>
