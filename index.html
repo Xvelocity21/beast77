@@ -1475,14 +1475,10 @@
                 });
             });
         });
-if (challengeBtn) { challengeBtn.addEventListener('click', (e) => { challengeDisplay.innerText = "Generating..."; challengeDisplay.style.borderColor = '#2563eb'; setTimeout(() => { const random = Math.floor(Math.random() * challenges.length); challengeDisplay.innerText = challenges[random]; challengeDisplay.style.borderColor = '#10b981'; confetti({ particleCount: 30, spread: 50, origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight } }); }, 400); }); } const feastablesData = [ { id: 'original', name: 'Original', icon: '🍫' }, { id: 'almond', name: 'Almond', icon: '🥜' }, { id: 'quinoa', name: 'Quinoa', icon: '🌾' }, { id: 'milk', name: 'Milk Choc', icon: '🥛' }, { id: 'deez', name: 'Deez Nutz', icon: '🥜' }, { id: 'crunch', name: 'Crunch', icon: '💥' } ]; const feastablesContainer = document.querySelector('.feastables-grid'); let collectedFeastables = JSON.parse(localStorage.getItem('collectedFeastables')) || []; if (feastablesContainer) { feastablesData.forEach(bar => { const item = document.createElement('div'); item.className = `feastable-item ${collectedFeastables.includes(bar.id) ? 'collected' : ''}`; item.innerHTML = `
-${bar.icon}
-${bar.name}
-`; item.addEventListener('click', () => { if (collectedFeastables.includes(bar.id)) { collectedFeastables = collectedFeastables.filter(id => id !== bar.id); item.classList.remove('collected'); } else { collectedFeastables.push(bar.id); item.classList.add('collected'); confetti({ particleCount: 15, spread: 30, origin: { x: item.getBoundingClientRect().left / window.innerWidth, y: item.getBoundingClientRect().top / window.innerHeight } }); } localStorage.setItem('collectedFeastables', JSON.stringify(collectedFeastables)); }); feastablesContainer.appendChild(item); }); } // Join Button Modal Logic const joinBtn = document.getElementById('join-btn-link'); const joinModal = document.getElementById('join-modal'); const joinYes = document.getElementById('join-confirm-yes'); const joinNo = document.getElementById('join-confirm-no'); if (joinBtn && joinModal) { joinBtn.addEventListener('click', (e) => { // Intercept all links with confirm-action class document.querySelectorAll('a.confirm-action').forEach(el => { el.addEventListener('click', e => { e.preventDefault(); joinModal.style.display = 'flex'; }); const message = el.dataset.confirmMessage || 'Are you sure you want to proceed?'; const href = el.href; joinYes.addEventListener('click', () => { window.open(joinBtn.href, '_blank'); joinModal.style.display = 'none'; }); // Don't show modal if href is not set (e.g. share button before video loads) if (!href || href.endsWith('#')) return; joinNo.addEventListener('click', () => { joinModal.style.display = 'none'; showConfirmModal(message, () => { window.open(href, '_blank'); }); }); }); joinModal.addEventListener('click', (e) => { if (e.target === joinModal) { joinModal.style.display = 'none'; } }); }
+
 
 
     </script>
 </body>
 
 </html>
-
