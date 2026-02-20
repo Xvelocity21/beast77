@@ -1495,25 +1495,26 @@
         const xveloBtn = document.getElementById('xvelo-ask-btn');
         const xveloHistory = document.getElementById('xvelo-chat-history');
 
-        const beastKnowledge = {
-            "net worth": "MrBeast's net worth is estimated to be over $500 million, though he reinvests almost everything into his videos!",
-            "age": "Jimmy Donaldson (MrBeast) was born on May 7, 1998.",
-            "height": "MrBeast is approximately 6 feet 3 inches (1.91 m) tall.",
-            "burgers": "MrBeast Burger was a virtual restaurant chain launched in 2020.",
-            "feastables": "Feastables is Jimmy's chocolate and snack brand, known for the MrBeast Bar.",
-            "crew": "The main crew consists of Jimmy, Chris, Chandler, Karl, and Nolan.",
-            "chris": "Chris Tyson is a childhood friend of Jimmy and a long-time crew member.",
-            "chandler": "Chandler Hallow is known for winning challenges... eventually!",
-            "karl": "Karl Jacobs joined the crew later and brings a chaotic energy.",
-            "nolan": "Nolan Hansen is a regular member of the MrBeast crew.",
-            "money": "MrBeast makes money from brand deals, ad revenue, and merchandise, but he gives most of it away!",
-            "giveaway": "MrBeast is famous for giving away millions of dollars, cars, and even islands.",
-            "trees": "Team Trees raised over $20 million to plant 20 million trees.",
-            "seas": "Team Seas raised over $30 million to remove 30 million pounds of trash from the ocean.",
-            "girlfriend": "MrBeast has dated Maddy Spidell and Thea Booysen.",
-            "youtube": "MrBeast has the most subscribed individual channel on YouTube.",
-            "videos": "His videos often involve expensive stunts, challenges, and philanthropy."
-        };
+        const beastKnowledge = [
+            { keys: ["net worth", "rich", "worth", "how much money"], answer: "MrBeast's net worth is estimated to be over $500 million, though he reinvests almost everything into his videos!" },
+            { keys: ["age", "old", "born", "birthday"], answer: "Jimmy Donaldson (MrBeast) was born on May 7, 1998." },
+            { keys: ["height", "tall"], answer: "MrBeast is approximately 6 feet 3 inches (1.91 m) tall." },
+            { keys: ["burger"], answer: "MrBeast Burger was a virtual restaurant chain launched in 2020." },
+            { keys: ["feastables", "chocolate", "snack", "bar", "candy"], answer: "Feastables is Jimmy's chocolate and snack brand, known for the MrBeast Bar." },
+            { keys: ["chris", "tyson"], answer: "Chris Tyson is a childhood friend of Jimmy and a long-time crew member." },
+            { keys: ["chandler", "hallow"], answer: "Chandler Hallow is known for winning challenges... eventually!" },
+            { keys: ["karl", "jacobs"], answer: "Karl Jacobs joined the crew later and brings a chaotic energy." },
+            { keys: ["nolan", "hansen"], answer: "Nolan Hansen is a regular member of the MrBeast crew." },
+            { keys: ["crew", "friend", "team"], answer: "The main crew consists of Jimmy, Chris, Chandler, Karl, and Nolan." },
+            { keys: ["money", "giveaway", "prize", "cash"], answer: "MrBeast is famous for giving away millions of dollars, cars, and even islands." },
+            { keys: ["tree"], answer: "Team Trees raised over $20 million to plant 20 million trees." },
+            { keys: ["sea", "ocean", "trash"], answer: "Team Seas raised over $30 million to remove 30 million pounds of trash from the ocean." },
+            { keys: ["girlfriend", "dating", "partner"], answer: "MrBeast has dated Maddy Spidell and Thea Booysen." },
+            { keys: ["youtube", "sub", "channel"], answer: "MrBeast has the most subscribed individual channel on YouTube." },
+            { keys: ["video", "content"], answer: "His videos often involve expensive stunts, challenges, and philanthropy." },
+            { keys: ["real name", "jimmy"], answer: "MrBeast's real name is Jimmy Donaldson." },
+            { keys: ["live", "location", "where"], answer: "MrBeast lives in Greenville, North Carolina." }
+        ];
 
         const askXvelo = async () => {
             const query = xveloInput.value.trim().toLowerCase();
@@ -1540,13 +1541,21 @@
 
             // Determine Answer
             let answer = "I couldn't find specific details on that, but MrBeast is always up to something crazy! Check his latest video.";
-            for (const [key, value] of Object.entries(beastKnowledge)) {
-                if (query.includes(key)) {
-                    answer = value;
+            let answerFound = false;
+
+            // Prioritize specific questions over greetings
+            for (const entry of beastKnowledge) {
+                if (entry.keys.some(key => query.includes(key))) {
+                    answer = entry.answer;
+                    answerFound = true;
                     break;
                 }
             }
-            if (query.match(/^(hi|hello|hey)/)) answer = "Hello! I'm Xvelo AI. Ask me about MrBeast!";
+
+            // If no specific answer was found, check if it was a simple greeting
+            if (!answerFound && query.match(/^(hi|hello|hey)/)) {
+                answer = "Hello! I'm Xvelo AI. Ask me about MrBeast!";
+            }
 
             // AI Response
             xveloHistory.innerHTML += `<div style="align-self: flex-start; background: #10b981; color: black; padding: 8px 12px; border-radius: 12px; max-width: 80%; font-weight: 500;">${answer}</div>`;
@@ -1559,92 +1568,6 @@
                 if (e.key === 'Enter') askXvelo();
             });
         }
-
-
-    </script>
-</body>
-
-</html>         const href = el.href;
-
-                // Don't show modal if href is not set (e.g. share button before video loads)
-                if (!href || href.endsWith('#')) return;
-
-                showConfirmModal(message, () => {
-                    window.open(href, '_blank');
-                });
-            });
-        });
-
-        // Xvelo AI Logic
-        const xveloInput = document.getElementById('xvelo-input');
-        const xveloBtn = document.getElementById('xvelo-ask-btn');
-        const xveloHistory = document.getElementById('xvelo-chat-history');
-
-        const beastKnowledge = {
-            "net worth": "MrBeast's net worth is estimated to be over $500 million, though he reinvests almost everything into his videos!",
-            "age": "Jimmy Donaldson (MrBeast) was born on May 7, 1998.",
-            "height": "MrBeast is approximately 6 feet 3 inches (1.91 m) tall.",
-            "burgers": "MrBeast Burger was a virtual restaurant chain launched in 2020.",
-            "feastables": "Feastables is Jimmy's chocolate and snack brand, known for the MrBeast Bar.",
-            "crew": "The main crew consists of Jimmy, Chris, Chandler, Karl, and Nolan.",
-            "chris": "Chris Tyson is a childhood friend of Jimmy and a long-time crew member.",
-            "chandler": "Chandler Hallow is known for winning challenges... eventually!",
-            "karl": "Karl Jacobs joined the crew later and brings a chaotic energy.",
-            "nolan": "Nolan Hansen is a regular member of the MrBeast crew.",
-            "money": "MrBeast makes money from brand deals, ad revenue, and merchandise, but he gives most of it away!",
-            "giveaway": "MrBeast is famous for giving away millions of dollars, cars, and even islands.",
-            "trees": "Team Trees raised over $20 million to plant 20 million trees.",
-            "seas": "Team Seas raised over $30 million to remove 30 million pounds of trash from the ocean.",
-            "girlfriend": "MrBeast has dated Maddy Spidell and Thea Booysen.",
-            "youtube": "MrBeast has the most subscribed individual channel on YouTube.",
-            "videos": "His videos often involve expensive stunts, challenges, and philanthropy."
-        };
-
-        const askXvelo = async () => {
-            const query = xveloInput.value.trim().toLowerCase();
-            if (!query) return;
-
-            // User Message
-            xveloHistory.innerHTML += `<div style="align-self: flex-end; background: #2563eb; color: white; padding: 8px 12px; border-radius: 12px; max-width: 80%;">${xveloInput.value}</div>`;
-            xveloInput.value = '';
-            xveloHistory.scrollTop = xveloHistory.scrollHeight;
-
-            // Loading/Searching Simulation
-            const loadingId = Date.now();
-            const sources = ["Wikipedia", "YouTube API", "MrBeast Stats", "Twitter/X"];
-            const randomSource = sources[Math.floor(Math.random() * sources.length)];
-            
-            xveloHistory.innerHTML += `<div id="${loadingId}" style="align-self: flex-start; background: #374151; color: #d1d5db; padding: 8px 12px; border-radius: 12px; max-width: 80%; font-style: italic;">🔍 Collecting info from ${randomSource}...</div>`;
-            xveloHistory.scrollTop = xveloHistory.scrollHeight;
-
-            await new Promise(r => setTimeout(r, 1500));
-
-            // Remove loading
-            const loadingEl = document.getElementById(loadingId);
-            if(loadingEl) loadingEl.remove();
-
-            // Determine Answer
-            let answer = "I couldn't find specific details on that, but MrBeast is always up to something crazy! Check his latest video.";
-            for (const [key, value] of Object.entries(beastKnowledge)) {
-                if (query.includes(key)) {
-                    answer = value;
-                    break;
-                }
-            }
-            if (query.match(/^(hi|hello|hey)/)) answer = "Hello! I'm Xvelo AI. Ask me about MrBeast!";
-
-            // AI Response
-            xveloHistory.innerHTML += `<div style="align-self: flex-start; background: #10b981; color: black; padding: 8px 12px; border-radius: 12px; max-width: 80%; font-weight: 500;">${answer}</div>`;
-            xveloHistory.scrollTop = xveloHistory.scrollHeight;
-        };
-
-        if(xveloBtn) {
-            xveloBtn.addEventListener('click', askXvelo);
-            xveloInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') askXvelo();
-            });
-        }
-
 
     </script>
 </body>
