@@ -1513,8 +1513,11 @@
             { keys: ["youtube", "sub", "channel"], answer: "MrBeast has the most subscribed individual channel on YouTube." },
             { keys: ["video", "content"], answer: "His videos often involve expensive stunts, challenges, and philanthropy." },
             { keys: ["real name", "jimmy"], answer: "MrBeast's real name is Jimmy Donaldson." },
-            { keys: ["live", "location", "where"], answer: "MrBeast lives in Greenville, North Carolina." },
-            { keys: ["start", "career", "beginning", "first video"], answer: "He started on YouTube in 2012 at age 13, posting gaming videos like Minecraft and Call of Duty before going viral with 'Counting to 100,000'." }
+            { keys: ["live", "location", "where"], topic: "MrBeast location", answer: "MrBeast lives in Greenville, North Carolina." },
+            { keys: ["start", "career", "beginning", "first video"], topic: "MrBeast career", answer: "He started on YouTube in 2012 at age 13, posting gaming videos like Minecraft and Call of Duty before going viral with 'Counting to 100,000'." },
+            { keys: ["award", "streamy", "diamond"], topic: "MrBeast awards", answer: "MrBeast has won numerous awards, including multiple Streamy Awards for Creator of the Year. He also has several Diamond Play Buttons from YouTube." },
+            { keys: ["squid game"], topic: "MrBeast Squid Game", answer: "His real-life Squid Game recreation cost millions to produce and became one of the most-viewed non-music videos on YouTube in its first 24 hours." },
+            { keys: ["buried alive", "coffin"], topic: "MrBeast buried alive", answer: "He has done multiple 'buried alive' challenges, spending up to 50 hours underground in a coffin for a video." }
         ];
 
         const askXvelo = async () => {
@@ -1528,10 +1531,8 @@
 
             // Loading/Searching Simulation
             const loadingId = Date.now();
-            const sources = ["Wikipedia", "YouTube API", "MrBeast Stats", "Twitter/X"];
-            const randomSource = sources[Math.floor(Math.random() * sources.length)];
             
-            xveloHistory.innerHTML += `<div id="${loadingId}" style="align-self: flex-start; background: #374151; color: #d1d5db; padding: 8px 12px; border-radius: 12px; max-width: 80%; font-style: italic;">🔍 Collecting info from ${randomSource}...</div>`;
+            xveloHistory.innerHTML += `<div id="${loadingId}" style="align-self: flex-start; background: #374151; color: #d1d5db; padding: 8px 12px; border-radius: 12px; max-width: 80%; font-style: italic;">🔍 Collecting info from Wikipedia...</div>`;
             xveloHistory.scrollTop = xveloHistory.scrollHeight;
 
             await new Promise(r => setTimeout(r, 1500));
@@ -1546,8 +1547,10 @@
 
             // Prioritize specific questions over greetings
             for (const entry of beastKnowledge) {
-                if (entry.keys.some(key => query.includes(key))) {
+                const matchedKey = entry.keys.find(key => query.includes(key));
+                if (matchedKey) {
                     answer = entry.answer;
+                    answer += ` <a href="https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(entry.topic || `MrBeast ${matchedKey}`)}" target="_blank" style="color: #000; text-decoration: underline;">Learn more...</a>`;
                     answerFound = true;
                     break;
                 }
